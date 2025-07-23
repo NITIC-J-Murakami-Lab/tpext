@@ -1,0 +1,25 @@
+[project]
+name = "tpext"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipython>=9.4.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.3",
+    "matplotlib-fontja>=1.1.0",
+    "numpy>=2.3.1",
+    "pandas>=2.3.1",
+    "scipy>=1.16.0",
+    "seaborn>=0.13.2",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "tqdm>=4.67.1",
+]
+
+[[tool.uv.index]]
+name = "pytorch-rocm"
+url = "https://download.pytorch.org/whl/rocm6.3"
+explicit = true
