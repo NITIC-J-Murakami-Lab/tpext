@@ -22,6 +22,12 @@ import argparse
 import sys
 
 
+# 公開API（import時に見えるもの）
+__all__ = [
+    'DataFrameCombiner',
+    'combine_pickle_files'
+]
+
 # ログ設定（デフォルト）
 logger = logging.getLogger(__name__)
 
@@ -323,19 +329,22 @@ def parse_args() -> argparse.Namespace:
         epilog="""
 使用例:
   # デフォルト設定で実行
-  python ja_comb.py
+  python processed_data_combiner.py
 
   # カスタム設定で実行
-  python ja_comb.py -i data_chunks -o combined.pkl -p "*.pickle"
+  python processed_data_combiner.py -i data_chunks -o combined.pkl -p "*.pickle"
 
   # ファイル情報のみ表示
-  python ja_comb.py --info-only
+  python processed_data_combiner.py --info-only
 
   # 整合性チェックをスキップして実行
-  python ja_comb.py --no-validate
+  python processed_data_combiner.py --no-validate
 
   # デバッグモードで実行
-  python ja_comb.py --log-level DEBUG
+  python processed_data_combiner.py --log-level DEBUG
+
+  # モジュールとしての実行例
+  python -m tpext.preprocess.processed_data_combiner -i data/ -o result.pkl
         """
     )
     

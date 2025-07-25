@@ -23,6 +23,18 @@ import glob
 import os   
 from pathlib import Path
 import argparse
+import logging
+
+
+# 公開API
+__all__ = [
+    'JapaneseTextProcessor',
+    'ChunkProcessor', 
+    'load_data'
+]
+
+# ログ設定（デフォルト）
+logger = logging.getLogger(__name__)
 
 
 class JapaneseTextProcessor:
@@ -152,7 +164,7 @@ class ChunkProcessor:
             chunk_index (int): チャンクのインデックス
             total_chunks (int): 総チャンク数
         """
-        print(f"\n--- チャンク {chunk_index + 1}/{total_chunks} の処理を開始 ---")
+        print(f"\\n--- チャンク {chunk_index + 1}/{total_chunks} の処理を開始 ---")
         
         # 並列処理で名詞抽出
         processed_series: pd.Series = chunk_df['text'].parallel_apply(
@@ -202,7 +214,7 @@ class ChunkProcessor:
             # チャンクを処理
             self._process_chunk(chunk_df, i, total_chunks)
         
-        print("\n全てのチャンク処理が完了しました。")
+        print("\\n全てのチャンク処理が完了しました。")
     
     def load_processed_chunks(self) -> pd.DataFrame:
         """処理済みチャンクを読み込んで結合する
@@ -270,7 +282,7 @@ def main(data_path:str = '/mnt/ExtreamSSD/ja_df.pkl') -> None:
         # データを処理
         processor.process_dataframe(df)
         
-        print("\n処理が正常に完了しました。")
+        print("\\n処理が正常に完了しました。")
         
     except FileNotFoundError as e:
         print(f"エラー: {e}")
