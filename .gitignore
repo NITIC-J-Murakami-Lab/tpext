@@ -209,4 +209,5 @@ __marimo__/
 
 processed_pkls_en/
 data/
+data
 **.pkl
