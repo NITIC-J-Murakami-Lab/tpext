@@ -50,6 +50,13 @@ final_output_path = 'ja_df_processed.pkl'
 os.makedirs(output_dir, exist_ok=True) 
 
 for i, chunk_start in enumerate(range(0, len(df), chunk_size)):
+    chunk_output_path = os.path.join(output_dir, f'chunk_{i}.pkl')
+    # ▼▼▼ 変更点：ここから ▼▼▼
+    # 既に処理済みのファイルが存在するかチェック
+    if os.path.exists(chunk_output_path):
+        print(f"--- チャンク {i+1} は処理済みのためスキップします --- ({chunk_output_path})")
+        continue # 次のループへ
+        
     chunk_end = chunk_start + chunk_size
     chunk_df = df.iloc[chunk_start:chunk_end]
 
